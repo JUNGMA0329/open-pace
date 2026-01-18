@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Pace - A Federated Strava Alternative</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Open Pace - A Federated Strava Alternative">
+    <meta name="description" content="A federated fitness tracking platform built on ActivityPub. Own your miles, share your journey. Built with Quarkus and Vert.x.">
+    <meta name="keywords" content="ActivityPub, Federation, Fitness, Strava, Running, Cycling, Open Source, Quarkus, Vert.x, Federated Social Network">
+    <meta name="author" content="Open Pace Contributors">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/myfear/open-pace">
+    <meta property="og:title" content="Open Pace - A Federated Strava Alternative">
+    <meta property="og:description" content="A federated fitness tracking platform built on ActivityPub. Own your miles, share your journey.">
+    <meta property="og:image" content="https://github.com/myfear/open-pace/raw/main/open-pace.gif">
+    <meta property="og:site_name" content="Open Pace">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://github.com/myfear/open-pace">
+    <meta name="twitter:title" content="Open Pace - A Federated Strava Alternative">
+    <meta name="twitter:description" content="A federated fitness tracking platform built on ActivityPub. Own your miles, share your journey.">
+    <meta name="twitter:image" content="https://github.com/myfear/open-pace/raw/main/open-pace.gif">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://github.com/myfear/open-pace">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/gif" href="open-pace.gif">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Open Pace",
+      "description": "A federated fitness tracking platform built on ActivityPub, using Quarkus and Vert.x. Share your runs, rides, and activities across the fediverse while maintaining ownership of your data.",
+      "url": "https://github.com/myfear/open-pace",
+      "applicationCategory": "FitnessApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "codeRepository": "https://github.com/myfear/open-pace",
+      "programmingLanguage": "Java",
+      "runtimePlatform": "Quarkus",
+      "keywords": [
+        "ActivityPub",
+        "Federation",
+        "Fitness",
+        "Strava",
+        "Running",
+        "Cycling",
+        "Open Source",
+        "Quarkus",
+        "Vert.x"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "Open Pace Contributors",
+        "url": "https://github.com/myfear/open-pace"
+      },
+      "slogan": "Own your miles, share your journey.",
+      "featureList": [
+        "Federated ActivityPub server",
+        "GPX file support",
+        "Sports activity tracking",
+        "Privacy controls",
+        "Data portability",
+        "Mastodon integration"
+      ]
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #24292e;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .github-link:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-link:active {
+            transform: translateY(0);
+        }
+
+        .github-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="open-pace.gif" alt="Open Pace Logo" class="logo">
+        <h1>Open Pace</h1>
+        <p class="subtitle">
+            A federated fitness tracking platform built on ActivityPub.<br>
+            Own your miles, share your journey.
+        </p>
+        <a href="https://github.com/myfear/open-pace" class="github-link" target="_blank" rel="noopener noreferrer">
+            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+        </a>
+    </div>
+</body>
+</html>

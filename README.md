@@ -278,7 +278,21 @@ We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) 
 
 ## 📄 License
 
-[Add your license here]
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+**Apache License 2.0** allows you to:
+- ✅ Use the software commercially
+- ✅ Modify and distribute
+- ✅ Patent use
+- ✅ Private use
+- ✅ Sublicense
+
+**Requirements**:
+- 📋 Include license and copyright notice
+- 📋 State changes if you modify files
+- 📋 Include NOTICE file if present
+
+For full license terms, see [LICENSE](LICENSE).
 
 ## 🔗 Resources
 
