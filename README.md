@@ -23,7 +23,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Test by following from Mastodon
 
 **Status**: 🚧 In Progress  
-**Location**: `open-pace-p1/` folder
+**Tag**: `v0.1.0-sprint1` (when released)
 
 ### Sprint 2: Custom Activity Types
 **Goal**: Extend ActivityPub with sports-specific data
@@ -33,7 +33,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Render activities in your UI
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p2/` folder
+**Tag**: `v0.2.0-sprint2` (when released)
 
 ### Sprint 3: Rich Data & Interop
 **Goal**: Make it beautiful and interoperable
@@ -43,7 +43,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Activity streams (your feed, following feed)
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p3/` folder
+**Tag**: `v0.3.0-sprint3` (when released)
 
 ### Sprint 4: Sports-Specific Features
 **Goal**: Strava-like competitive features
@@ -53,7 +53,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Challenges and goals
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p4/` folder
+**Tag**: `v0.4.0-sprint4` (when released)
 
 ### Sprint 5: Privacy & Data
 **Goal**: Production-ready privacy and data control
@@ -63,7 +63,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Instance-level federation policies
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p5/` folder
+**Tag**: `v0.5.0-sprint5` (when released)
 
 ### Sprint 6: Security Integration
 **Goal**: Authentication and authorization
@@ -74,7 +74,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Actor-User relationship
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p6/` folder  
+**Tag**: `v0.6.0-sprint6` (when released)  
 **Strategy**: [Security Integration Guide](docs/SECURITY_INTEGRATION.md)
 
 ### Sprint 7: Mapping Integration
@@ -86,7 +86,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Display maps in ActivityPub activity attachments
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p7/` folder  
+**Tag**: `v0.7.0-sprint7` (when released)  
 **Strategy**: [Mapping Integration Guide](docs/MAPPING_INTEGRATION.md)
 
 ### Sprint 8: Activity Analytics & Personal Records
@@ -99,7 +99,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Activity statistics dashboard
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p8/` folder
+**Tag**: `v0.8.0-sprint8` (when released)
 
 **Technical**:
 - Time-series data analysis
@@ -117,7 +117,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Notifications for interactions
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p9/` folder
+**Tag**: `v0.9.0-sprint9` (when released)
 
 **Technical**:
 - ActivityPub Create/Like/Announce activities
@@ -135,7 +135,7 @@ This project is structured as **10 implementation sprints** that build a complet
 - Default gear per activity type
 
 **Status**: 📋 Planned  
-**Location**: `open-pace-p10/` folder
+**Tag**: `v1.0.0-sprint10` (when released)
 
 **Technical**:
 - Gear database schema
@@ -153,27 +153,38 @@ This project is structured as **10 implementation sprints** that build a complet
 
 ### Project Structure
 
-This project uses **separate implementation folders** for each sprint (mono-repo structure):
+This project uses a **single, evolving codebase** where each sprint builds incrementally on the previous one. Git tags provide access to the state of the codebase at each sprint completion.
 
-- `open-pace/` - This folder (shared documentation and implementation guides)
-- `open-pace-p1/` - Sprint 1: Basic ActivityPub Server
-- `open-pace-p2/` - Sprint 2: Custom Activity Types
-- `open-pace-p3/` - Sprint 3: Rich Data & Interop
-- `open-pace-p4/` - Sprint 4: Sports-Specific Features
-- `open-pace-p5/` - Sprint 5: Privacy & Data
-- `open-pace-p6/` - Sprint 6: Security Integration
-- `open-pace-p7/` - Sprint 7: Mapping Integration
-- `open-pace-p8/` - Sprint 8: Activity Analytics & Personal Records
-- `open-pace-p9/` - Sprint 9: Social Interactions & Feed
-- `open-pace-p10/` - Sprint 10: Gear & Equipment Tracking
+**Repository Structure**:
+- `src/main/java/org/openpace/` - Source code (packages added incrementally per sprint)
+- `src/test/java/org/openpace/` - Tests
+- `docs/` - Implementation guides and strategy documents
+- `pom.xml` - Single Quarkus project configuration
 
-Each sprint is a **standalone, runnable project** that builds incrementally on previous sprints.
+**Accessing Previous Sprint States**:
+```bash
+# View Sprint 1 code
+git checkout v0.1.0-sprint1
+
+# View Sprint 2 code
+git checkout v0.2.0-sprint2
+
+# Return to latest development
+git checkout develop
+```
 
 ### Getting Started
 
-1. **Navigate to Sprint 1 project**:
+1. **Clone and checkout the sprint you want to work with**:
    ```bash
-   cd open-pace-p1
+   git clone <repository-url>
+   cd open-pace
+   
+   # For Sprint 1
+   git checkout v0.1.0-sprint1
+   
+   # Or work on latest development
+   git checkout develop
    ```
 
 2. **Start the application** (database starts automatically via Quarkus Dev Services):
@@ -186,9 +197,9 @@ Each sprint is a **standalone, runnable project** that builds incrementally on p
    - Configure the database connection
    - Run Flyway migrations
 
-3. **Implement Sprint 1**:
-   - Follow the implementation guide in `../open-pace/docs/`
-   - Build the basic ActivityPub server
+3. **Implement or extend sprints**:
+   - Follow the implementation guide in `docs/`
+   - Build on existing codebase
    - Test with Mastodon
 
 ## 📖 Documentation
@@ -245,19 +256,21 @@ Each tutorial part includes:
 - Manual test scripts (curl commands)
 - Mastodon compatibility testing
 
-Run tests (from within each sprint's folder):
+Run tests:
 ```bash
-cd open-pace-p1
 ./mvnw test
 ```
 
 ## 🤝 Contributing
 
-This is an implementation project. Contributions welcome for:
-- Bug fixes
-- Implementation improvements
-- Additional features
-- Better documentation
+We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- How to contribute (including AI-assisted contributions)
+- Code standards and review process
+- Git workflow and branch naming
+- What to contribute and priorities
+
+**Quick start**: Fork the repo, create a feature branch from `develop`, make your changes, and submit a Pull Request.
 
 ## 📄 License
 

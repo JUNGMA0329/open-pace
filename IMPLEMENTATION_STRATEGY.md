@@ -32,12 +32,34 @@ Each sprint has:
 
 ## Project Structure
 
-Each implementation sprint is a **standalone, runnable project** in its own folder within this repository:
+This project uses a **single, evolving codebase** where each sprint builds incrementally on the previous one. Git tags provide access to the state of the codebase at each sprint completion.
+
+### Repository Structure
 
 ```
 open-pace/                         # Repository root
 ├── README.md                      # Main project overview
 ├── IMPLEMENTATION_STRATEGY.md     # This file
+├── pom.xml                        # Quarkus project (single project)
+├── src/
+│   ├── main/
+│   │   ├── java/org/openpace/
+│   │   │   ├── core/             # Core ActivityPub logic (Sprint 1+)
+│   │   │   ├── activities/       # Custom activity types (Sprint 2+)
+│   │   │   ├── rendering/        # Activity rendering (Sprint 3+)
+│   │   │   ├── sports/           # Sports features (Sprint 4+)
+│   │   │   ├── privacy/          # Privacy features (Sprint 5+)
+│   │   │   ├── security/         # Security integration (Sprint 6+)
+│   │   │   ├── mapping/          # Mapping integration (Sprint 7+)
+│   │   │   ├── analytics/        # Analytics (Sprint 8+)
+│   │   │   ├── social/           # Social features (Sprint 9+)
+│   │   │   └── gear/             # Gear tracking (Sprint 10+)
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── db/migration/     # Flyway migrations
+│   └── test/
+│       └── java/org/openpace/    # Tests organized by package
+│
 ├── docs/                          # Shared documentation
 │   ├── part-1-basic-activitypub.md
 │   ├── part-2-custom-activities.md
@@ -47,42 +69,35 @@ open-pace/                         # Repository root
 │   ├── ACTIVITYPUB_REFERENCE.md
 │   └── PROJECT_SETUP.md
 │
-├── open-pace-p1/                  # Sprint 1: Standalone project
-│   ├── pom.xml                    # Quarkus project
-│   ├── README.md                  # Sprint 1 specific README
-│   ├── src/
-│   │   └── main/
-│   │       └── java/org/openpace/
-│   │           └── core/          # Core ActivityPub logic
-│   ├── src/test/                  # Sprint 1 tests
-│   └── (no docker-compose needed - Quarkus Dev Services handles it)
-│
-├── open-pace-p2/                  # Sprint 2: Standalone project
-│   ├── pom.xml                    # Quarkus project (builds on Sprint 1)
-│   ├── README.md                  # Sprint 2 specific README
-│   ├── src/
-│   │   └── main/
-│   │       └── java/org/openpace/
-│   │           ├── core/          # Core ActivityPub (refined)
-│   │           └── activities/  # Custom activity types
-│   └── ...
-│
-├── open-pace-p3/                  # Sprint 3: Standalone project
-├── open-pace-p4/                  # Sprint 4: Standalone project
-├── open-pace-p5/                  # Sprint 5: Standalone project
-├── open-pace-p6/                  # Sprint 6: Standalone project
-├── open-pace-p7/                  # Sprint 7: Standalone project
-├── open-pace-p8/                  # Sprint 8: Standalone project
-├── open-pace-p9/                  # Sprint 9: Standalone project
-└── open-pace-p10/                 # Sprint 10: Standalone project
+└── LICENSE                        # Apache 2.0 License
+```
+
+### Accessing Previous Sprint States
+
+**Git tags provide access to each sprint's state:**
+
+```bash
+# View Sprint 1 code (Basic ActivityPub)
+git checkout v0.1.0-sprint1
+
+# View Sprint 2 code (Custom Activities)
+git checkout v0.2.0-sprint2
+
+# View Sprint 3 code (Rich Data & Interop)
+git checkout v0.3.0-sprint3
+
+# Return to latest development
+git checkout develop
 ```
 
 **Key Benefits of This Structure:**
-- ✅ Each sprint is **completely runnable** independently
-- ✅ Developers can start at any sprint (with prerequisites)
-- ✅ Clear separation of concerns
-- ✅ Easy to test each sprint in isolation
-- ✅ Version control via git tags for each sprint release
+- ✅ **Single codebase**: No code duplication, natural evolution
+- ✅ **Version history**: Git tags show progression through sprints
+- ✅ **Realistic workflow**: Matches real-world development practices
+- ✅ **Easy maintenance**: One project to maintain, not ten
+- ✅ **Clear progression**: Git history shows how features evolved
+- ✅ **Accessible checkpoints**: Checkout any sprint tag to see that state
+- ✅ **Incremental building**: Each sprint adds to existing codebase
 
 ## Git Workflow Strategy
 
@@ -120,8 +135,8 @@ develop                 (integration branch)
    ```
 
 2. **Implement sprint features**: Work in the feature branch
-   - Create sprint folder: `open-pace-pX/`
-   - Implement features
+   - Add new packages/classes to existing codebase
+   - Extend existing functionality
    - Commit frequently with clear messages
 
 3. **Merge to develop**: When sprint is complete and tested
@@ -277,24 +292,29 @@ When building Sprint 2+:
 
 #### Using Previous Sprint Code
 
-When copying code from a previous sprint:
+When building on previous sprint code:
 
 1. **Checkout the tagged version** to reference:
-   ```bash
-   git show v0.1.0-sprint1:open-pace-p1/src/main/java/... > reference.java
-   ```
-
-2. **Or browse the tag** in your IDE/editor:
    ```bash
    git checkout v0.1.0-sprint1
    # Browse code, then return to your branch
    git checkout feature/sprint-2
    ```
 
-3. **Document the source** in code comments:
+2. **Or view specific files** from a tag:
+   ```bash
+   git show v0.1.0-sprint1:src/main/java/org/openpace/core/Actor.java
+   ```
+
+3. **Code evolves in place**: Previous sprint code is already in the codebase, just extend it
+   - Sprint 1 code is in `src/main/java/org/openpace/core/`
+   - Sprint 2 adds `src/main/java/org/openpace/activities/`
+   - Each sprint builds on what's already there
+
+4. **Document evolution** in code comments:
    ```java
-   // Adapted from Sprint 1 (v0.1.0-sprint1)
-   // Enhanced with [new feature]
+   // Enhanced in Sprint 2: Added custom activity types
+   // Original implementation from Sprint 1 (v0.1.0-sprint1)
    ```
 
 ### Git Best Practices
@@ -453,22 +473,44 @@ Each implementation sprint should follow this structure:
 ## Code Organization Strategy
 
 ### 1. **Package Structure**
-Each sprint is in its own project folder, but packages can evolve:
+Packages evolve incrementally as sprints progress:
 
 ```
-Sprint 1 (open-pace-p1/): org.openpace.core.*
-Sprint 2 (open-pace-p2/): org.openpace.core.* + org.openpace.activities.*
-Sprint 3 (open-pace-p3/): + org.openpace.rendering.*
-Sprint 4 (open-pace-p4/): + org.openpace.sports.*
-Sprint 5 (open-pace-p5/): + org.openpace.privacy.*
-Sprint 6 (open-pace-p6/): + org.openpace.security.*
-Sprint 7 (open-pace-p7/): + org.openpace.mapping.*
-Sprint 8 (open-pace-p8/): + org.openpace.analytics.*
-Sprint 9 (open-pace-p9/): + org.openpace.social.*
-Sprint 10 (open-pace-p10/): + org.openpace.gear.*
+Sprint 1 (v0.1.0-sprint1): 
+  org.openpace.core.*
+
+Sprint 2 (v0.2.0-sprint2): 
+  org.openpace.core.* (existing)
+  + org.openpace.activities.* (new)
+
+Sprint 3 (v0.3.0-sprint3): 
+  org.openpace.core.* (existing)
+  org.openpace.activities.* (existing)
+  + org.openpace.rendering.* (new)
+
+Sprint 4 (v0.4.0-sprint4): 
+  + org.openpace.sports.* (new)
+
+Sprint 5 (v0.5.0-sprint5): 
+  + org.openpace.privacy.* (new)
+
+Sprint 6 (v0.6.0-sprint6): 
+  + org.openpace.security.* (new)
+
+Sprint 7 (v0.7.0-sprint7): 
+  + org.openpace.mapping.* (new)
+
+Sprint 8 (v0.8.0-sprint8): 
+  + org.openpace.analytics.* (new)
+
+Sprint 9 (v0.9.0-sprint9): 
+  + org.openpace.social.* (new)
+
+Sprint 10 (v1.0.0-sprint10): 
+  + org.openpace.gear.* (new)
 ```
 
-**Note**: Each sprint is independent. You can copy/adapt code from previous sprints, but each sprint should be runnable on its own.
+**Note**: Each sprint builds on the previous codebase. Code from earlier sprints remains in the codebase and is extended/refined. Use git tags to access the state at any sprint.
 
 ### 1a. **API Endpoint Organization**
 
@@ -639,30 +681,42 @@ For detailed versions and technology choices, see **[Quarkus Tech Stack](docs/QU
 
 ### Phase 2: Implementation
 1. **Create feature branch**: `git checkout -b feature/sprint-X`
-2. **Create project folder**: `open-pace-pX/` (e.g., `open-pace-p1/`)
-3. **Set up Quarkus project** in that folder
-4. **Implement the part** following your outline
-5. **Write tests** as you go
-6. **Test with Mastodon** to verify federation works
-7. **Commit frequently** with clear, conventional commit messages
+2. **Set up Quarkus project** (if first sprint) or work in existing codebase
+3. **Implement the sprint** following your outline
+   - Add new packages/classes as needed
+   - Extend existing functionality
+4. **Write tests** as you go
+5. **Test with Mastodon** to verify federation works
+6. **Commit frequently** with clear, conventional commit messages
 
-**Starting Part 1 - Quick Setup**:
+**Starting Sprint 1 - Quick Setup**:
 ```bash
 # Create feature branch
 git checkout develop
 git pull origin develop
 git checkout -b feature/sprint-1
 
-# Create the project folder
-mkdir open-pace-p1
-cd open-pace-p1
-
-# Create Quarkus project (or initialize manually)
-# Ensure it has:
+# Initialize Quarkus project (if not already done)
+# Ensure pom.xml has:
 # - Quarkus REST
 # - Quarkus Vert.x
 # - PostgreSQL driver
 # - Flyway (for migrations)
+
+# Start implementing Sprint 1 features
+# Code goes in src/main/java/org/openpace/core/
+```
+
+**Starting Sprint 2+ - Building on Previous**:
+```bash
+# Create feature branch
+git checkout develop
+git pull origin develop
+git checkout -b feature/sprint-2
+
+# Previous sprint code is already in the codebase
+# Add new packages/classes for Sprint 2
+# Code goes in src/main/java/org/openpace/activities/
 ```
 
 ### Phase 3: Documentation
@@ -690,12 +744,12 @@ cd open-pace-p1
 **Important**: Document key implementation decisions and lessons learned in the relevant strategy documents. This helps maintain consistency and guides future parts.
 
 ### Phase 6: Finalize
-1. **Ensure project is complete** and runnable in its folder
-2. **Update main README** with status
-3. **Create README.md** in the part's folder with part-specific info
+1. **Ensure sprint is complete** and codebase is runnable
+2. **Update main README** with sprint status
+3. **Update sprint documentation** in `docs/` folder
 4. **Merge to develop**: `git checkout develop && git merge --no-ff feature/sprint-X`
 5. **Tag release**: Merge to `main` and tag with `v0.X.0-sprintX`
-6. **Prepare for next part** (create feature branch for next sprint)
+6. **Prepare for next sprint** (create feature branch for next sprint)
 
 ### Key Success Factors
 
@@ -753,17 +807,17 @@ cd open-pace-p1
 
 ## Quality Gates
 
-Before marking a part as complete:
+Before marking a sprint as complete:
 
-- [ ] Code compiles and runs in its project folder (`open-pace-pX/`)
+- [ ] Code compiles and runs in the codebase
 - [ ] All tests pass
 - [ ] Can follow from Mastodon
 - [ ] Tutorial is clear to a beginner
 - [ ] Examples work out-of-the-box
 - [ ] No broken links or references
-- [ ] Project folder is complete and self-contained
-- [ ] README.md exists in project folder
+- [ ] Sprint documentation updated in `docs/` folder
 - [ ] **Implementation decisions documented** in relevant strategy documents
+- [ ] **Git tag created** for this sprint release
 
 ## Reader Experience
 
@@ -795,34 +849,46 @@ Before marking a part complete:
 ## Next Steps
 
 1. **Initialize repository** (if not done): Set up `main` and `develop` branches
-2. **Create feature branch**: `git checkout -b feature/sprint-1`
-3. **Create `open-pace-p1/` folder** and set up Quarkus project
-4. **Create Part 1** (establish pattern)
+2. **Set up Quarkus project** at repository root (single `pom.xml`)
+3. **Create feature branch**: `git checkout -b feature/sprint-1`
+4. **Implement Sprint 1** (establish pattern)
 5. **Document decisions** in relevant strategy documents
-6. **Review Part 1** (refine approach)
+6. **Review Sprint 1** (refine approach)
 7. **Tag release**: Merge to `main` and tag `v0.1.0-sprint1`
-8. **Create `open-pace-p2/` folder** and apply pattern
-9. **Continue for Parts 3-10** with proper versioning
-10. **Cross-part review** (consistency check)
+8. **Start Sprint 2**: Create feature branch and build on Sprint 1 code
+9. **Continue for Sprints 3-10** with proper versioning
+10. **Cross-sprint review** (consistency check)
 11. **Final polish** (examples, screenshots, etc.)
 
-## Migration Between Parts
+## Migration Between Sprints
 
-When building Part 2+:
+When building Sprint 2+:
 
-### Option A: Copy and Refine (Recommended)
-- Copy relevant code from `open-pace-p1/` to `open-pace-p2/`
-- Refine and extend it
-- **Pros**: Shows progression, readers can see evolution
-- **Cons**: More code to maintain
+### Incremental Development (Standard Approach)
+- **Previous sprint code is already in the codebase**
+- Add new packages/classes for new features
+- Extend and refine existing code as needed
+- **Pros**: Natural evolution, no duplication, realistic workflow
+- **Cons**: None - this is the standard approach
 
-### Option B: Reference Only
-- Build Part 2 from scratch
-- Reference Part 1 concepts in documentation
-- **Pros**: Cleaner, focused code
-- **Cons**: Less continuity, more duplication
+### Accessing Previous Sprint States
 
-**Recommendation**: Use Option A for Parts 1-3 (shows clear progression), Option B for Parts 4-7 (more specialized features).
+To see how code looked at a previous sprint:
+
+```bash
+# Checkout Sprint 1 state
+git checkout v0.1.0-sprint1
+# Browse code, see what was implemented
+# Return to development
+git checkout develop
+```
+
+### Code Evolution
+
+- **Sprint 1**: Creates `org.openpace.core.*` package
+- **Sprint 2**: Adds `org.openpace.activities.*` package, may refine core
+- **Sprint 3**: Adds `org.openpace.rendering.*` package, builds on previous
+- Each sprint adds new functionality while maintaining existing code
 
 ## Implementation Decisions Documentation
 
